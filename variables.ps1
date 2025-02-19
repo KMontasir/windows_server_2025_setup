@@ -1,4 +1,4 @@
-#à faire en avant
+#A faire en avant
 #New-NetIPAddress -InterfaceAlias $PDC_InterfaceAlias -IPAddress $PDC_IPAddress -PrefixLength $PDC_PrefixLength -DefaultGateway $PDC_DefaultGateway
 #Set-DnsClientServerAddress -InterfaceAlias $PDC_InterfaceAlias -ServerAddresses $PDC_DnsServernew
 
@@ -28,7 +28,7 @@ $PrimaryDNS_LastOctet = ($PrimaryDNS -split "\.")[3]
 $SecondaryDNS_LastOctet = ($SecondaryDNS -split "\.")[3]
 $Record_TimeToLive = "01:00:00"
 
-# Configuration Réseau PDC
+# Configuration Reseau PDC
 $PDC_Hostname = "pdc"
 $PDC_InterfaceAlias = "Ethernet"
 $PDC_IPAddress = "192.168.100.20"
@@ -37,7 +37,7 @@ $PDC_DefaultGateway = "192.168.100.1"
 $PDC_DnsServer = "192.168.100.20"
 $PDC_SSh_Port = "22"
 
-# Configuration Réseau SDC
+# Configuration Reseau SDC
 $SDC_Hostname = "sdc"
 $SDC_InterfaceAlias = "Ethernet"
 $SDC_IPAddress = "192.168.100.25"
