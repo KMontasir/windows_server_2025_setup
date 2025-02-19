@@ -14,7 +14,7 @@ $DomainName = "SUN.COM"
 $NetbiosName = "SUN"
 $ForestMode = "Win2025"
 $DomainMode = "Win2025"
-$domaine = "DC=SUN,DC=COM"
+$domain = "DC=SUN,DC=COM"
 $SafeModePassword = ConvertTo-SecureString -String "Azerty/123" -AsPlainText -Force
 
 # DNS Configuration
