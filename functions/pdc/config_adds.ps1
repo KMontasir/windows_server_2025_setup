@@ -1,18 +1,18 @@
 # Creation de l'OU principale
 New-ADOrganizationalUnit -Name $rootOUName -Path $domain -ProtectedFromAccidentalDeletion $true
 
-# Creation des UO Techniques Globales
+# Creation des OU Techniques Globales
 foreach ($techUO in $techUOs) {
     New-ADOrganizationalUnit -Name $techUO -Path $rootOU -ProtectedFromAccidentalDeletion $true
 }
 
-# Creation des UO par service
+# Creation des OU par service
 $services = $users.Service | Sort-Object -Unique
 foreach ($service in $services) {
-    # Creation de l'UO pour le service
+    # Creation de l'OU pour le service
     New-ADOrganizationalUnit -Name $service -Path $rootOU -ProtectedFromAccidentalDeletion $true
 
-    # Creation des sous-UO
+    # Creation des sous-OU
     if ($service -eq "Developpement") {
         $subOUs += "Serveurs"
     }
@@ -24,8 +24,6 @@ foreach ($service in $services) {
 
 # Ajout des utilisateurs depuis le fichier CSV
 foreach ($user in $users) {
-    # Construire le chemin d'OU pour l'utilisateur
-    $ouPath = "OU=Utilisateurs,OU=$user.Service,$rootOU"
     
     # Afficher pour deboguer
     Write-Host "OU Path: $ouPath"
