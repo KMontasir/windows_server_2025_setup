@@ -43,15 +43,14 @@ $SDC_DefaultGateway = "192.168.100.1"
 $SDC_DnsServer = "192.168.100.25"
 $SDC_SSh_Port = "22"
 
-# Configuration utilisateurs
-$mdp = "Azerty/123" # Le mot de passe par defaut pour les utilisateurs
-$csvFile = ".\users.csv" # Chemin du fichier CSV
-$users = Import-Csv -Path $csvFile -Delimiter ';' -Encoding UTF8 # Chargement des utilisateurs depuis le CSV avec le separateur ";"
-
 # Configuration OU
 $rootOUName = "Entreprise" # Nom de l'OU principale
 $rootOU = "OU=$rootOUName,$domain" # Chemin de l'OU principale
 $subOUs = @("Utilisateurs", "Ordinateurs", "Groupes", "GPOs") # Sous-OU
 $techUOs = @("Serveurs", "Admins", "Groupes_Generaux", "Postes_IT") # OU Techniques Globales
+$ouPath = "OU=Utilisateurs,OU=$user.Service,$rootOU" # Construire le chemin d'OU pour l'utilisateur
 
-
+# Configuration utilisateurs
+$mdp = "Azerty/123" # Le mot de passe par defaut pour les utilisateurs
+$csvFile = ".\users.csv" # Chemin du fichier CSV
+$users = Import-Csv -Path $csvFile -Delimiter ';' -Encoding UTF8 # Chargement des utilisateurs depuis le CSV avec le separateur ";"
