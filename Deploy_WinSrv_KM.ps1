@@ -1,17 +1,6 @@
 # Importation des variables
 . .\variables.ps1
 
-. .\functions\pdc\01_pdc_config_basic.ps1
-. .\functions\pdc\02_pdc_config_ad_forest.ps1
-. .\functions\pdc\03_pdc_config_ad.ps1
-. .\functions\pdc\config_adds.ps1
-. .\functions\pdc\config_gpo.ps1
-
-. .\functions\sdc\01_sdc_config_basic.ps1
-. .\functions\sdc\02_sdc_config_ad.ps1
-
-. .\functions\poste_admin\poste_admin_config.ps1
-
 function config_machine {
     # Menu principal
     Write-Host "`n*** MENU CONFIGURATION MACHINE SUN LILLE :" -BackgroundColor Blue -ForegroundColor White
