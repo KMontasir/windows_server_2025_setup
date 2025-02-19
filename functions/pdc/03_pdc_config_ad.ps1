@@ -9,7 +9,6 @@ Add-DnsServerResourceRecordPtr -Name $PrimaryDNS_LastOctet -ZoneName $ReverseZon
 # Enregistre le second serveur DNS
 # Cree un enregistrement A et un enregistrement PTR pour le serveur secondaire DNS
 Add-DnsServerResourceRecordA -Name $SDC_Hostname -ZoneName $DomainName -IPv4Address $SecondaryDNS -TimeToLive $Record_TimeToLive -CreatePtr -PassThru
-Add-DnsServerResourceRecordPtr -Name $SecondaryDNS_LastOctet -ZoneName $ReverseZone -PtrDomainName "${SDC_Hostname}.${DomainName}"
 
 # Execution des scripts supplementaires
 .\functions\pdc\config_adds.ps1
