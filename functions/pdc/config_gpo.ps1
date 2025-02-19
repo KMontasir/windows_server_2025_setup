@@ -1,6 +1,3 @@
-# Importation des variables
-#. .\variables.ps1
-
 function set_all_gpos_and_apply {
     # Creer et configurer le GPO pour la securite des comptes utilisateurs
     $gpo_user_account_security = New-GPO -Name "gpo_user_account_security" -Comment "GPO to secure user accounts"
