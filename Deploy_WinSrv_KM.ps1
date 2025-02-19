@@ -20,22 +20,22 @@ function config_machine {
     $choix = Read-Host "Configurer quel type de machine ? (0 pour quitter)"
 
     if ($choix -like "1")
-        {. .\functions\pdc\01_pdc_config_basic.ps1}
+        {.\functions\pdc\01_pdc_config_basic.ps1}
 
     elseif ($choix -like "2")
-        {. .\functions\pdc\02_pdc_config_ad_forest.ps1}
+        {.\functions\pdc\02_pdc_config_ad_forest.ps1}
 
     elseif ($choix -like "3")
-        {. .\functions\pdc\03_pdc_config_ad.ps1}
+        {.\functions\pdc\03_pdc_config_ad.ps1}
 
     elseif ($choix -like "4")
-        {. .\functions\sdc\01_sdc_config_basic.ps1}
+        {.\functions\sdc\01_sdc_config_basic.ps1}
 
     elseif ($choix -like "5")
-        {. .\functions\sdc\02_sdc_config_ad.ps1}
+        {.\functions\sdc\02_sdc_config_ad.ps1}
 
     elseif ($choix -like "6")
-        {. .\functions\poste_admin\poste_admin_config.ps1}
+        {.\functions\poste_admin\poste_admin_config.ps1}
 
     elseif ($choix -like "0")
         {Invoke-Expression -Command exit}
