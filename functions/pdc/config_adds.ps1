@@ -1,8 +1,8 @@
 # Importation des variables
 #. .\variables.ps1
-. .\csv\users.csv
+. .\users.csv
 # Chemin du fichier CSV
-$csvFile = ".\csv\users.csv"
+$csvFile = ".\users.csv"
 
 # Chargement des utilisateurs depuis le CSV avec le separateur ";"
 $users = Import-Csv -Path $csvFile -Delimiter ';' -Encoding UTF8
