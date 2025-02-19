@@ -12,5 +12,5 @@ Add-DnsServerResourceRecordA -Name $SDC_Hostname -ZoneName $DomainName -IPv4Addr
 Add-DnsServerResourceRecordPtr -Name $SecondaryDNS_LastOctet -ZoneName $ReverseZone -PtrDomainName "${SDC_Hostname}.${DomainName}"
 
 # Execution des scripts supplementaires
-#.\functions\pdc\config_adds.ps1
+.\functions\pdc\config_adds.ps1
 #.\functions\pdc\config_gpo.ps1
