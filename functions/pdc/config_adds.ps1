@@ -2,7 +2,6 @@
 New-ADOrganizationalUnit -Name $rootOUName -Path $domain -ProtectedFromAccidentalDeletion $true
 
 # Creation des UO Techniques Globales
-$techUOs = @("Serveurs", "Admins", "Groupes_Generaux", "Postes_IT")
 foreach ($techUO in $techUOs) {
     New-ADOrganizationalUnit -Name $techUO -Path $rootOU -ProtectedFromAccidentalDeletion $true
 }
@@ -17,7 +16,6 @@ foreach ($service in $services) {
     New-ADOrganizationalUnit -Name $cleanedService -Path $rootOU -ProtectedFromAccidentalDeletion $true
 
     # Creation des sous-UO
-    $subOUs = @("Utilisateurs", "Ordinateurs", "Groupes", "GPOs")
     if ($service -eq "Developpement") {
         $subOUs += "Serveurs"
     }
