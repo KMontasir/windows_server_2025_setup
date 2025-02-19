@@ -1,6 +1,3 @@
-# Importation des variables
-#. .\variables.ps1
-
 # Configuration du reseau
 # Desactivation de IPv6
 Get-NetAdapter | ForEach-Object {
