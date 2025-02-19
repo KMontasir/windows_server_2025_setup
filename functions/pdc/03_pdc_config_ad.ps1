@@ -7,9 +7,17 @@ Add-DnsServerPrimaryZone -NetworkId $Network -DynamicUpdate Secure -ReplicationS
 Add-DnsServerResourceRecordPtr -Name $PrimaryDNS_LastOctet -ZoneName $ReverseZone -PtrDomainName "${PDC_Hostname}.${DomainName}"
 
 # Enregistre le second serveur DNS
-# Cree un enregistrement A et un enregistrement NS pour le serveur secondaire DNS
-Add-DnsServerResourceRecordA -Name $SDC_Hostname -ZoneName $DomainName -IPv4Address $SecondaryDNS -TimeToLive $Record_TimeToLive -CreatePtr -PassThru
-Add-DnsServerResourceRecordNS -Name $DomainName -NameServer $SDC_Hostname -ZoneName $DomainName -TimeToLive $Record_TimeToLive -PassThru
+# Création d'un enregistrement A pour le serveur secondaire DNS
+Add-DnsServerResourceRecordA -Name $SDC_Hostname -ZoneName $DomainName -IPv4Address $SecondaryDNS -TimeToLive $Record_TimeToLive -PassThru
+
+# Ajouter un enregistrement NS pour le serveur secondaire dans la zone DNS principale
+Add-DnsServerResourceRecord -Name "@" -NS -ZoneName $DomainName -NameServer "$SDC_Hostname.$DomainName" -PassThru
+
+# Ajouter un enregistrement NS pour le serveur secondaire dans la zone de recherche inversée
+Add-DnsServerResourceRecord -Name "@" -NS -ZoneName $ReverseZone -NameServer "$SDC_Hostname.$DomainName" -PassThru
+
+# Ajouter manuellement l'enregistrement PTR pour le serveur secondaire dans la zone inverse
+Add-DnsServerResourceRecord -Name $SecondaryDNS_LastOctet -PTR -ZoneName $ReverseZone -PtrDomainName "$SDC_Hostname.$DomainName" -PassThru
 
 # Execution des scripts supplementaires
 .\functions\pdc\config_adds.ps1
