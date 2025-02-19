@@ -1,6 +1,3 @@
-# Importation des variables
-#. .\variables.ps1
-
 # Installation du role Active Directory Domain Services
 # Installe les outils necessaires pour la gestion du domaine
 Install-WindowsFeature AD-Domain-Services -IncludeManagementTools
