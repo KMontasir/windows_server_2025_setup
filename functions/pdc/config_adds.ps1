@@ -1,6 +1,3 @@
-# Importation des variables
-#. .\variables.ps1
-. .\users.csv
 # Chemin du fichier CSV
 $csvFile = ".\users.csv"
 
