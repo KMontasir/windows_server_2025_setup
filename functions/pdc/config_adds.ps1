@@ -1,12 +1,5 @@
-# Chemin du fichier CSV
-$csvFile = ".\users.csv"
-
-# Chargement des utilisateurs depuis le CSV avec le separateur ";"
-$users = Import-Csv -Path $csvFile -Delimiter ';' -Encoding UTF8
-
 # Creation de l'OU principale
-$rootOU = "OU=Entreprise,$domain"
-New-ADOrganizationalUnit -Name "Entreprise" -Path $domain -ProtectedFromAccidentalDeletion $true
+New-ADOrganizationalUnit -Name $rootOUName -Path $domain -ProtectedFromAccidentalDeletion $true
 
 # Creation des UO Techniques Globales
 $techUOs = @("Serveurs", "Admins", "Groupes_Generaux", "Postes_IT")
