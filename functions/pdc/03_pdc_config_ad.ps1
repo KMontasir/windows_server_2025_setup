@@ -1,6 +1,3 @@
-# Importation des variables
-#. .\variables.ps1
-
 # Configuration DNS pour la zone inverse
 # Ajoute une zone inverse dans le serveur DNS
 Add-DnsServerPrimaryZone -NetworkId $Network -DynamicUpdate Secure -ReplicationScope "Domain"
