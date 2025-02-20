@@ -20,5 +20,5 @@ Add-DnsServerResourceRecord -Name "@" -NS -ZoneName $ReverseZone -NameServer "$S
 Add-DnsServerResourceRecord -Name $SecondaryDNS_LastOctet -PTR -ZoneName $ReverseZone -PtrDomainName "$SDC_Hostname.$DomainName" -PassThru
 
 # Execution des scripts supplementaires
-.\functions\pdc\config_adds.ps1
+#.\functions\pdc\config_adds.ps1
 #.\functions\pdc\config_gpo.ps1
