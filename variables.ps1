@@ -43,6 +43,13 @@ $SDC_DefaultGateway = "192.168.100.1"
 $SDC_DnsServer = "192.168.100.25"
 $SDC_SSh_Port = "22"
 
+# Définition des variables DHCP
+$ScopeName = "SUN_SCOPE"
+$ScopeStart = "192.168.100.150"
+$ScopeEnd = "192.168.100.254"
+$SubnetMask = "255.255.255.0"
+$DnsServers = "$PrimaryDNS,$SecondaryDNS"
+
 # Configuration OU
 $rootOUName = "Entreprise" # Nom de l'OU principale
 $rootOU = "OU=$rootOUName,$domain" # Chemin de l'OU principale
