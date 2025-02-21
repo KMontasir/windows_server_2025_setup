@@ -39,7 +39,7 @@ foreach ($user in $users) {
                -UserPrincipalName "$identifiant@$domaine" `
                -Path $ouPath `
                -AccountPassword (ConvertTo-SecureString -AsPlainText $mdp -Force) `
-               -CannotChangePassword $true `
+               -CannotChangePassword $false `
                -Enabled $true `
                -ChangePasswordAtLogon $true
 }
