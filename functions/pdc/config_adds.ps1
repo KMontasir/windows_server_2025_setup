@@ -1,42 +1,49 @@
-# Creation de l'OU principale
+# Adaptation du format du domaine
+$DomainFQDN = $DomainName.ToLower()
+
+# Création de l'OU principale
 New-ADOrganizationalUnit -Name $rootOUName -Path $domain -ProtectedFromAccidentalDeletion $true
 
-# Creation des OU Techniques Globales
+# Création des OU Techniques Globales
 foreach ($techUO in $techUOs) {
     New-ADOrganizationalUnit -Name $techUO -Path $rootOU -ProtectedFromAccidentalDeletion $true
 }
 
-# Creation des OU par service
+# Création des OU par service
 $services = $users.Service | Sort-Object -Unique
 foreach ($service in $services) {
-    # Creation de l'OU pour le service
+    # Création de l'OU pour le service
     New-ADOrganizationalUnit -Name $service -Path $rootOU -ProtectedFromAccidentalDeletion $true
 
-    # Creation des sous-OU
+    # Création d'une liste temporaire des sous-OU
+    $subOUsTemp = $subOUs
     if ($service -eq "Developpement") {
-        $subOUs += "Serveurs"
+        $subOUsTemp += "Serveurs"
     }
 
-    foreach ($subOU in $subOUs) {
+    # Création des sous-OU
+    foreach ($subOU in $subOUsTemp) {
         New-ADOrganizationalUnit -Name $subOU -Path "OU=$service,$rootOU" -ProtectedFromAccidentalDeletion $true
     }
 }
 
 # Ajout des utilisateurs depuis le fichier CSV
 foreach ($user in $users) {
-    
-    # Afficher pour deboguer
+    # Définition correcte de l'OU de l'utilisateur
+    $ouPath = "OU=$($user.Service),$rootOU"
+
+    # Affichage pour debug
     Write-Host "OU Path: $ouPath"
 
-    # Construction de l'identifiant
+    # Construction de l'identifiant utilisateur
     $identifiant = "$($user.Prenom).$($user.Nom)"
-    
-    # Creation de l'utilisateur
+
+    # Création de l'utilisateur dans l'Active Directory
     New-ADUser -Name "$($user.Nom) $($user.Prenom)" `
                -GivenName $user.Prenom `
                -Surname $user.Nom `
                -SamAccountName $identifiant `
-               -UserPrincipalName "$identifiant@$domaine" `
+               -UserPrincipalName "$identifiant@$DomainFQDN" `
                -Path $ouPath `
                -AccountPassword (ConvertTo-SecureString -AsPlainText $mdp -Force) `
                -CannotChangePassword $false `
@@ -44,4 +51,4 @@ foreach ($user in $users) {
                -ChangePasswordAtLogon $true
 }
 
-Write-Host "Structure AD et utilisateurs crees avec succes !"
+Write-Host "Structure AD et utilisateurs créés avec succès !"
