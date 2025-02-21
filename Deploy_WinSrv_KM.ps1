@@ -8,9 +8,11 @@ function config_machine {
     `n1 - Preparer le future Controleur de domaine principal
     `n2 - Configurer la foret sur le Contrôleur de domaine principal
     `n3 - Configurer l'annuaire LDAP
-    `n4 - Preparer le future Controleur de domaine secondaire
-    `n5 - Configurer le domaine sur le Contrôleur de domaine secondaire
-    `n6 - Configurer un Poste Administrateur
+    `n4 - Configurer les utilisateurs et les unites d'organisation
+    `n5 - Configurer les stratégies de groupe
+    `n6 - Preparer le future Controleur de domaine secondaire
+    `n7 - Configurer le domaine sur le Contrôleur de domaine secondaire
+    `n8 - Configurer un Poste Administrateur
     `n0 - Quitter `n"
 
     $choix = Read-Host "Configurer quel type de machine ? (0 pour quitter)"
@@ -25,12 +27,18 @@ function config_machine {
         {.\functions\pdc\03_pdc_config_ad.ps1}
 
     elseif ($choix -like "4")
-        {.\functions\sdc\01_sdc_config_basic.ps1}
+        {.\functions\pdc\config_adds.ps1}
 
     elseif ($choix -like "5")
-        {.\functions\sdc\02_sdc_config_ad.ps1}
+        {.\functions\pdc\config_gpo.ps1}
 
     elseif ($choix -like "6")
+        {.\functions\sdc\01_sdc_config_basic.ps1}
+
+    elseif ($choix -like "7")
+        {.\functions\sdc\02_sdc_config_ad.ps1}
+
+    elseif ($choix -like "8")
         {.\functions\poste_admin\poste_admin_config.ps1}
 
     elseif ($choix -like "0")
