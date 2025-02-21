@@ -19,6 +19,36 @@ Add-DnsServerResourceRecord -Name "@" -NS -ZoneName $ReverseZone -NameServer "$S
 # Ajouter manuellement l'enregistrement PTR pour le serveur secondaire dans la zone inverse
 Add-DnsServerResourceRecord -Name $SecondaryDNS_LastOctet -PTR -ZoneName $ReverseZone -PtrDomainName "$SDC_Hostname.$DomainName" -PassThru
 
+# Installation du rôle DHCP sur PDC
+Install-WindowsFeature -Name 'DHCP' -IncludeManagementTools
+
+# Autorisation du serveur DHCP dans Active Directory
+Add-DhcpServerInDC -DnsName "$PDC_Hostname" -IPAddress "$PDC_IPAddress"
+
+# Création de l'étendue DHCP
+Add-DhcpServerv4Scope -Name $ScopeName -StartRange $ScopeStart -EndRange $ScopeEnd -SubnetMask $SubnetMask -State Active
+
+# Configuration de la passerelle par défaut
+Set-DhcpServerv4OptionValue -ScopeID $Network -OptionID 3 -Value $PDC_DefaultGateway
+
+# Configuration des serveurs DNS
+Set-DhcpServerv4OptionValue -ScopeID $Network -OptionID 6 -Value $DnsServers
+
+# Configuration des serveurs de noms
+Set-DhcpServerv4OptionValue -ScopeID $Network -OptionID 15 -Value $DomainName
+
+# Activation du serveur DHCP
+Set-DhcpServerSetting -DynamicUpdates Always -ConflictDetectionAttempts 2
+
+# Démarrage du service DHCP
+Start-Service -Name DHCPServer
+
+# Vérification du statut du service
+Get-Service -Name DHCPServer
+
+# Vérification des étendues DHCP configurées
+Get-DhcpServerv4Scope
+
 # Execution des scripts supplementaires
 #.\functions\pdc\config_adds.ps1
 #.\functions\pdc\config_gpo.ps1
