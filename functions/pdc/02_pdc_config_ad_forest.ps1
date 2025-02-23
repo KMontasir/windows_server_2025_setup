@@ -4,7 +4,7 @@ Install-WindowsFeature AD-Domain-Services -IncludeManagementTools
 
 # Configuration du serveur DNS
 # Redefinit l'adresse DNS du serveur a "127.0.0.1"
-Set-DnsClientServerAddress -InterfaceAlias $PDC_InterfaceAlias -ServerAddresses "127.0.0.1"
+Set-DnsClientServerAddress -InterfaceAlias $PDC_InterfaceAlias -ServerAddresses "127.0.0.1 $SecondaryDNS"
 
 # Creation de la foret Active Directory
 # Cree une nouvelle foret Active Directory avec les parametres specifies
