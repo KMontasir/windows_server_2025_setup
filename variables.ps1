@@ -49,3 +49,7 @@ $ScopeStart = "192.168.100.150"
 $ScopeEnd = "192.168.100.254"
 $SubnetMask = "255.255.255.0"
 $DnsServers = "$PrimaryDNS,$SecondaryDNS"
+
+# Configuration utilisateurs
+$mdp = "Montasir/123" # Le mot de passe par defaut pour les utilisateurs
+$csvFile = ".\users.csv" # Chemin du fichier CSV
