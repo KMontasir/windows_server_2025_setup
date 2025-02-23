@@ -22,8 +22,8 @@ if (!(Get-NetFirewallRule -Name "OpenSSH-Server-In-TCP" -ErrorAction SilentlyCon
 
 # Renommage de l'ordinateur
 # Change le nom de la machine
-Rename-Computer -NewName $SDC_Hostname
+Rename-Computer -NewName $SDC_Hostname -Restart
 
 # Joindre le serveur au domaine
 # Ajoute la machine au domaine specifie et redemarre
-Add-Computer -DomainName $DomainName -Restart
+#Add-Computer -DomainName $DomainName -Restart
