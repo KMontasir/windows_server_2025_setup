@@ -7,7 +7,7 @@ Set-DnsClientServerAddress -InterfaceAlias $SDC_InterfaceAlias -ServerAddresses 
 # Promotion en controleur de domaine secondaire
 Install-ADDSDomainController `
     -DomainName $DomainName `
-    -ReplicationSourceDC $PDC_Hostname `
+    -ReplicationSourceDC $PDC_Hostname.$DomainName `
     -DatabasePath "$Sys_Partition\Windows\NTDS" `
     -LogPath "$Sys_Partition\Windows\NTDS" `
     -SysvolPath "$Sys_Partition\Windows\SYSVOL" `
