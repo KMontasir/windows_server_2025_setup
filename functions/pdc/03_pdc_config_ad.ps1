@@ -16,6 +16,7 @@ Add-DnsServerResourceRecord -Name "@" -NS -ZoneName $DomainName -NameServer "$SD
 # Ajouter un enregistrement NS pour le serveur secondaire dans la zone de recherche inversée
 Add-DnsServerResourceRecord -Name "@" -NS -ZoneName $ReverseZone -NameServer "$SDC_Hostname.$DomainName" -PassThru
 
+# Configuration DHCP
 # Installation du rôle DHCP sur PDC
 Install-WindowsFeature -Name 'DHCP' -IncludeManagementTools
 
