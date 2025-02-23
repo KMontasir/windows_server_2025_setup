@@ -1,3 +1,10 @@
+# Configuration OU
+$rootOUName = "Entreprise" # Nom de l'OU principale
+$rootOU = "OU=$rootOUName,$domain" # Chemin de l'OU principale
+$subOUs = @("Utilisateurs", "Ordinateurs", "Groupes", "GPOs") # Sous-OU
+$techUOs = @("Serveurs", "Admins", "Groupes_Generaux", "Postes_IT") # OU Techniques Globales
+$ouPath = "OU=Utilisateurs,OU=$user.Service,$rootOU" # Construire le chemin d'OU pour l'utilisateur
+
 # Adaptation du format du domaine
 $DomainFQDN = $DomainName.ToLower()
 
