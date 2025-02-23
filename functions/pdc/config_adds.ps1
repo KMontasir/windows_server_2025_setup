@@ -1,3 +1,8 @@
+# Configuration utilisateurs
+$mdp = "Montasir/123" # Le mot de passe par defaut pour les utilisateurs
+$csvFile = ".\users.csv" # Chemin du fichier CSV
+$users = Import-Csv -Path $csvFile -Delimiter ';' -Encoding UTF8 # Chargement des utilisateurs depuis le CSV avec le separateur ";"
+
 # Configuration OU
 $rootOUName = "Entreprise" # Nom de l'OU principale
 $rootOU = "OU=$rootOUName,$domain" # Chemin de l'OU principale
