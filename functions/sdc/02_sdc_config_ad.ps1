@@ -15,7 +15,7 @@ Install-ADDSDomainController `
     -Force
 
 # Creation de la zone inverse DNS
-Add-DnsServerSecondaryZone -Name $ReverseZone -ZoneFile "$ReverseZone.dns" -MasterServers $SDC_DnsServer -PassThru
+#Add-DnsServerSecondaryZone -Name $ReverseZone -ZoneFile "$ReverseZone.dns" -MasterServers $SDC_DnsServer -PassThru
 
 # Verification de la replication
-repadmin /replsummary
+#repadmin /replsummary
