@@ -11,10 +11,10 @@ Add-DnsServerResourceRecordPtr -Name $PrimaryDNS_LastOctet -ZoneName $ReverseZon
 Add-DnsServerResourceRecordA -Name $SDC_Hostname -ZoneName $DomainName -IPv4Address $SecondaryDNS -TimeToLive $Record_TimeToLive -CreatePtr -PassThru
 
 # Ajouter un enregistrement NS pour le serveur secondaire dans la zone DNS principale
-Add-DnsServerResourceRecord -Name "@" -NS -ZoneName $DomainName -NameServer "$SDC_Hostname.$DomainName" -PassThru
+#Add-DnsServerResourceRecord -Name "@" -NS -ZoneName $DomainName -NameServer "$SDC_Hostname.$DomainName" -PassThru
 
 # Ajouter un enregistrement NS pour le serveur secondaire dans la zone de recherche inversée
-Add-DnsServerResourceRecord -Name "@" -NS -ZoneName $ReverseZone -NameServer "$SDC_Hostname.$DomainName" -PassThru
+#Add-DnsServerResourceRecord -Name "@" -NS -ZoneName $ReverseZone -NameServer "$SDC_Hostname.$DomainName" -PassThru
 
 # Configuration DHCP
 # Installation du rôle DHCP sur PDC
